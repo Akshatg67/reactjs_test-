@@ -257,7 +257,9 @@ function MyButton({ count, onClick }) {
 }
 */}
 
+
 {/* Tic-Tac-Toe */}
+{/* 
 
 import { useState } from 'react';
 
@@ -375,3 +377,12 @@ function calculateWinner(squares) {
   return null;
 }
 
+export default fuction Square() {
+  return <button className="square">X</button>;
+}
+
+export default function Square() {
+  return <button className="square">X</button>
+}
+
+*/}
