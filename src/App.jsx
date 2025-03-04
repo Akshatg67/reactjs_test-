@@ -551,9 +551,18 @@ function Square({value, onSquareClick}) {
 export default function Board() {
     const [xIsNext, setXIsNext] = useState(true);
     const [squares, setSquares] = useState(Array(9).fill(null));
+    
+    function gameover(squares) {
+      for (let i=0; i < squares.length; i++){
+        if (squares[i] == null) {
+        return false;
+        }
+      }
+      return true
+    }
 
     function handleClick(i) {
-        if (squares[i] || calculateWinner(squares)) {
+        if (squares[i] || calculateWinner(squares) || gameover(squares)) {
             return;
         }
         const nextSquares = squares.slice();
@@ -563,7 +572,7 @@ export default function Board() {
                 nextSquares[i] = 'O';
         }
         setSquares(nextSquares);
-        setXIsNext(!xIsNext);
+        setXIsNext(!xIsNext); 
     }
 
     function handleReset() {
@@ -575,7 +584,11 @@ export default function Board() {
     let status;
     if (winner) {
       status = 'winner: ' + winner;
-    } else {
+    } 
+    else if (gameover(squares)) {
+      status = 'It\'s a draw :('
+    } 
+    else {
       status = 'Next player: ' + (xIsNext ? 'X' : 'O');
     }
 
@@ -623,8 +636,3 @@ function calculateWinner(squares) {
   }
   return null;
 }
-
-
-
-
-{/*jndfue;nne;rnern*/}
